@@ -1,15 +1,15 @@
 from pathlib import Path
 from uuid import uuid4
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException\nfrom fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 
 APP_ROOT = Path(__file__).resolve().parent
 OUTPUT_DIR = APP_ROOT / "outputs"
-OUTPUT_DIR.mkdir(exist_ok=True)
+OUTPUT_DIR.mkdir(exist_ok=True)\napp_audio_dir = OUTPUT_DIR
 
-app = FastAPI(title="GOSPEL AI API", version="0.1.0")
+app = FastAPI(title="GOSPEL AI API", version="0.2.0")\napp.mount("/audio", StaticFiles(directory=str(OUTPUT_DIR)), name="audio")
 
 app.add_middleware(
     CORSMiddleware,
@@ -31,7 +31,7 @@ def health():
     return {
         "ok": True,
         "service": "gospel-ai",
-        "voice_engine": "adapter-not-connected",
+        "voice_engine": "openvoice-v2-local",
         "video_pipeline": "planned",
     }
 
