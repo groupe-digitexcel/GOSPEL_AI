@@ -1,0 +1,10 @@
+node_modules/
+.venv/
+__pycache__/
+*.pyc
+.env
+.env.*
+backend/outputs/*
+voice_samples/*
+!voice_samples/.gitkeep
+dist/
