@@ -1,0 +1,9 @@
+# Install these on the dedicated Python inference machine.
+# Keep Vercel/frontend dependencies separate from this runtime.
+openvoice @ git+https://github.com/myshell-ai/OpenVoice.git
+torch
+torchaudio
+librosa
+soundfile
+wavmark
+faster-whisper
