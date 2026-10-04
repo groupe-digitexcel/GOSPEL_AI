@@ -1,17 +1,22 @@
-FROM python:3.11-slim
+FROM python:3.9-slim
 
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 ENV PIP_NO_CACHE_DIR=1
+ENV PIP_DISABLE_PIP_VERSION_CHECK=1
 
 WORKDIR /app
 
-RUN apt-get update && apt-get install -y --no-install-recommends git ffmpeg libsndfile1 build-essential && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    git ffmpeg libsndfile1 build-essential \
+    && rm -rf /var/lib/apt/lists/*
 
 COPY requirements.txt /app/requirements.txt
 COPY requirements-voice.txt /app/requirements-voice.txt
 
-RUN pip install -r requirements.txt && pip install -r requirements-voice.txt
+RUN python -m pip install --upgrade pip setuptools wheel \
+    && pip install -r requirements.txt \
+    && pip install -r requirements-voice.txt
 
 COPY . /app
 
