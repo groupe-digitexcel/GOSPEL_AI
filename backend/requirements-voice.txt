@@ -1,9 +1,7 @@
-# Install these on the dedicated Python inference machine.
-# Keep Vercel/frontend dependencies separate from this runtime.
-openvoice @ git+https://github.com/myshell-ai/OpenVoice.git
+# Voice runtime dependencies for the dedicated inference machine.
+# OpenVoice's distribution name is MyShell-OpenVoice, so do not use
+# "openvoice @ ..." here; install the repository directly.
+git+https://github.com/myshell-ai/OpenVoice.git
 torch
 torchaudio
-librosa
 soundfile
-wavmark
-faster-whisper
