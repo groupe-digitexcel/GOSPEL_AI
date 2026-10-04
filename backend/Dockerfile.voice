@@ -8,7 +8,9 @@ ENV PIP_DISABLE_PIP_VERSION_CHECK=1
 WORKDIR /app
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    git ffmpeg libsndfile1 build-essential \
+    git ffmpeg libsndfile1 build-essential pkg-config \
+    libavformat-dev libavcodec-dev libavdevice-dev libavutil-dev \
+    libavfilter-dev libswscale-dev libswresample-dev \
     && rm -rf /var/lib/apt/lists/*
 
 COPY requirements.txt /app/requirements.txt
