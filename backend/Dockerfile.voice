@@ -4,7 +4,6 @@ ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 ENV PIP_NO_CACHE_DIR=1
 ENV PIP_DISABLE_PIP_VERSION_CHECK=1
-ENV PIP_CONSTRAINT=/tmp/pip-constraints.txt
 
 WORKDIR /app
 
@@ -12,14 +11,14 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     git ffmpeg libsndfile1 build-essential pkg-config \
     libavformat-dev libavcodec-dev libavdevice-dev libavutil-dev \
     libavfilter-dev libswscale-dev libswresample-dev \
-    && rm -rf /var/lib/apt/lists/* \
-    && printf '%s\n' 'Cython<3.0' > /tmp/pip-constraints.txt
+    && rm -rf /var/lib/apt/lists/*
 
 COPY requirements.txt /app/requirements.txt
 COPY requirements-voice.txt /app/requirements-voice.txt
 
 RUN python -m pip install --upgrade pip setuptools wheel \
     && pip install -r requirements.txt \
+    && pip install --no-deps git+https://github.com/myshell-ai/OpenVoice.git \
     && pip install -r requirements-voice.txt
 
 COPY . /app
