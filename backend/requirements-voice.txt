@@ -1,7 +1,10 @@
 # Voice runtime dependencies for the dedicated inference machine.
-# OpenVoice's distribution name is MyShell-OpenVoice, so do not use
-# "openvoice @ ..." here; install the repository directly.
+# OpenVoice's distribution name is MyShell-OpenVoice; install the repository directly.
+# The upstream OpenVoice requirements pin faster-whisper 0.9.0 -> PyAV 10,
+# which fails under modern isolated builds. Use the newer wheel-based release.
 git+https://github.com/myshell-ai/OpenVoice.git
+faster-whisper==1.0.3
+av==12.3.0
 torch
 torchaudio
 soundfile
