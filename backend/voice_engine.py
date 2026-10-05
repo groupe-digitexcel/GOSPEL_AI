@@ -18,7 +18,7 @@ OUTPUT_DIR = ROOT / "outputs"
 VOICE_DIR = ROOT / "voice_profile"
 OUTPUT_DIR.mkdir(exist_ok=True)
 
-MODEL_DIR = Path(os.getenv("OPENVOICE_MODEL_DIR", ROOT / "models" / "openvoice_v2"))
+MODEL_DIR = Path(os.getenv("OPENVOICE_MODEL_DIR", ROOT / "models" / "checkpoints_v2"))
 REFERENCE_EN = Path(os.getenv("GOSPEL_VOICE_EN", VOICE_DIR / "english.wav"))
 REFERENCE_FR = Path(os.getenv("GOSPEL_VOICE_FR", VOICE_DIR / "french.wav"))
 DEVICE = os.getenv("OPENVOICE_DEVICE", "cuda" if torch.cuda.is_available() else "cpu")
